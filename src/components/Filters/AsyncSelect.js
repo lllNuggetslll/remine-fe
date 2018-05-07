@@ -4,7 +4,7 @@ import API from "../../API";
 
 export const NONE_SELECTED = "noneSelected";
 const OPTION_MAP = {
-  noneSelected: "None Selected",
+  [NONE_SELECTED]: "None Selected",
   multiFamily: "Multi Family",
   condo: "Condo",
   business: "Business",
