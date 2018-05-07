@@ -42,7 +42,7 @@ export default class AsyncSelect extends Component {
       >
         {buildingTypes.map(type => (
           <option key={type} value={type}>
-            {OPTION_MAP[type]}
+            {optionMap[type]}
           </option>
         ))}
       </select>
