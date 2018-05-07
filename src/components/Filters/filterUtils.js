@@ -3,10 +3,16 @@ import { INITIAL_State } from "./FilterContainer";
 import { NONE_SELECTED } from "./AsyncSelect";
 
 /**
- * Builds an index of the property indexes and stores them according
+ * Builds an index of the property [index]es and stores them according
  * to how they might be filtered.  Leveraging constant time look up
  * of objects and arrays. Array indexes used to easily slice() out bed/bath bounds.
- * i.e. bedsIndex = [{...properties with 0 bedrooms}, {...properties with 1 bedroom}, ...]
+ * i.e.
+ * buildingIndex = {
+ *  singleFamily: {0, 5, 9,...}
+ *  ...
+ * }
+ * bedsIndex = [{...properties with 0 bedrooms}, {...properties with 1 bedroom}, ...]
+ * bathsIndex = [{...properties with 0 bathrooms}, {...properties with 1 bathroom}, ...]
  * @param {properties} original array of properties.
  */
 export const buildIndex = properties => {
