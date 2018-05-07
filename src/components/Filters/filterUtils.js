@@ -28,7 +28,7 @@ export const buildIndex = properties => {
 };
 
 export const applyFilters = ({ properties, index, filters }) => {
-  if (!hasFilter(filters)) return properties;
+  if (isEqual(INITIAL_State, filters)) return properties;
 
   const { indexToFilter, bedBounds, bathBounds } = pepareIndexes({
     filters,
@@ -92,8 +92,4 @@ const pepareIndexes = ({ filters, index }) => {
   }
 
   return determinedIndexes;
-};
-
-const hasFilter = filters => {
-  return !isEqual(INITIAL_State, filters);
 };
