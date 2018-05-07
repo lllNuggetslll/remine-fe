@@ -6,7 +6,7 @@ export const NONE_SELECTED = "none selected";
 
 export default class AsyncSelect extends Component {
   state = {
-    buildingTypes: []
+    buildingTypes: [NONE_SELECTED]
   };
 
   componentDidMount() {
