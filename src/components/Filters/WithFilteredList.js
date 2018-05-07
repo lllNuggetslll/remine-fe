@@ -11,13 +11,15 @@ export default class WithFilteredList extends Component {
   };
 
   componentDidMount() {
-    API.getLocations().then(data =>
-      this.setState({
-        properties: data.data,
-        filteredList: data.data,
-        index: buildIndex(data.data)
-      })
-    );
+    API.getLocations()
+      .then(data =>
+        this.setState({
+          properties: data.data,
+          filteredList: data.data,
+          index: buildIndex(data.data)
+        })
+      )
+      .catch(err => console.log(new Error(err)));
   }
 
   handleApplyFilter = filters => {

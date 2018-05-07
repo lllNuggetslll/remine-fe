@@ -10,13 +10,15 @@ export default class AsyncSelect extends Component {
   };
 
   componentDidMount() {
-    API.getBuildingTypes().then(data => {
-      const buildingTypes = data.data.map(type => {
-        return type.name;
-      });
+    API.getBuildingTypes()
+      .then(data => {
+        const buildingTypes = data.data.map(type => {
+          return type.name;
+        });
 
-      this.setState({ buildingTypes: [NONE_SELECTED, ...buildingTypes] });
-    });
+        this.setState({ buildingTypes: [NONE_SELECTED, ...buildingTypes] });
+      })
+      .catch(err => console.log(new Error(err)));
   }
 
   render() {
