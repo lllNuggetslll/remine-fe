@@ -3,6 +3,7 @@ import Proptypes from "prop-types";
 import AsyncSelect from "./AsyncSelect";
 import InputField from "./InputField";
 import isEqual from "lodash/isEqual";
+
 const INITIAL_State = {
   buildingType: "none selected",
   minBeds: null,
@@ -30,12 +31,19 @@ export default class FilterContainer extends Component {
     this.setState({ [name]: value === "" ? null : value });
   };
 
+  handleResetFilters = () => {
+    this.setState(INITIAL_State);
+  };
+
   render() {
-    const { minBeds, maxBeds, minBaths, maxBaths } = this.state;
+    const { minBeds, maxBeds, minBaths, maxBaths, buildingType } = this.state;
 
     return (
       <div style={{ display: "flex" }}>
-        <AsyncSelect filterChange={this.handleFilterChange} />
+        <AsyncSelect
+          value={buildingType}
+          filterChange={this.handleFilterChange}
+        />
         <div>
           beds
           <div style={{ display: "flex" }}>
@@ -43,6 +51,7 @@ export default class FilterContainer extends Component {
               <div>min</div>
               <InputField
                 name={"minBeds"}
+                value={minBeds}
                 max={maxBeds}
                 filterChange={this.handleFilterChange}
               />
@@ -51,6 +60,7 @@ export default class FilterContainer extends Component {
               <div>max</div>
               <InputField
                 name={"maxBeds"}
+                value={maxBeds}
                 min={minBeds}
                 filterChange={this.handleFilterChange}
               />
@@ -64,6 +74,7 @@ export default class FilterContainer extends Component {
               <div>min</div>
               <InputField
                 name={"minBaths"}
+                value={minBaths}
                 max={maxBaths}
                 filterChange={this.handleFilterChange}
               />
@@ -72,12 +83,14 @@ export default class FilterContainer extends Component {
               <div>max</div>
               <InputField
                 name={"maxBaths"}
+                value={maxBaths}
                 min={minBaths}
                 filterChange={this.handleFilterChange}
               />
             </div>
           </div>
         </div>
+        <button onClick={this.handleResetFilters}>reset</button>
       </div>
     );
   }

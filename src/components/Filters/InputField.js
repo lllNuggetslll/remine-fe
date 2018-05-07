@@ -1,7 +1,7 @@
 import React from "react";
 import Proptypes from "prop-types";
 
-const InputField = ({ name, filterChange, min, max }) => {
+const InputField = ({ name, filterChange, value, min, max }) => {
   let msg = "Enter number";
   if (min) msg = `Must ${min} or more`;
   if (max) msg = `Must ${max} or less`;
@@ -10,6 +10,7 @@ const InputField = ({ name, filterChange, min, max }) => {
     <input
       type="number"
       name={name}
+      value={value || ""}
       min={0}
       placeholder={msg}
       onChange={filterChange}
@@ -19,6 +20,7 @@ const InputField = ({ name, filterChange, min, max }) => {
 InputField.propTypes = {
   name: Proptypes.string.isRequired,
   filterChange: Proptypes.func.isRequired,
+  value: Proptypes.string,
   min: Proptypes.string,
   max: Proptypes.string
 };

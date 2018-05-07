@@ -19,11 +19,12 @@ export default class AsyncSelect extends Component {
 
   render() {
     const { buildingTypes } = this.state;
-    const { filterChange } = this.props;
+    const { filterChange, value } = this.props;
 
     return (
       <select
         name="buildingType"
+        value={value || ""}
         style={{ width: 150 }}
         onChange={filterChange}
       >
@@ -37,5 +38,6 @@ export default class AsyncSelect extends Component {
   }
 }
 AsyncSelect.propTypes = {
-  filterChange: Proptypes.func.isRequired
+  filterChange: Proptypes.func.isRequired,
+  value: Proptypes.string
 };
