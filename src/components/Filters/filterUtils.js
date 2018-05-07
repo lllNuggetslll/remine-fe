@@ -23,7 +23,6 @@ export const buildIndex = properties => {
 };
 
 export const applyFilters = ({ properties, index, filters }) => {
-  console.log(filters);
   if (!hasFilter(filters)) return properties;
 
   const { indexToFilter, bedBounds, bathBounds } = pepareIndexes({

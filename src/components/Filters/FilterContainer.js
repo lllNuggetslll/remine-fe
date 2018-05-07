@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Proptypes from "prop-types";
-import Select from "./Select";
+import AsyncSelect from "./AsyncSelect";
 import isEqual from "lodash/isEqual";
 const INITIAL_State = {
   buildingType: "none selected",
@@ -9,6 +9,7 @@ const INITIAL_State = {
   minBaths: null,
   maxBaths: null
 };
+
 export default class FilterContainer extends Component {
   state = INITIAL_State;
 
@@ -24,8 +25,8 @@ export default class FilterContainer extends Component {
 
   handleFilterChange = e => {
     const { name, value } = e.target;
-    console.log(value);
-    this.setState({ [name]: value });
+
+    this.setState({ [name]: value === "" ? null : value });
   };
 
   handleResetFilters = () => {
@@ -33,20 +34,18 @@ export default class FilterContainer extends Component {
   };
 
   render() {
-    const inputField = name => {
-      return (
-        <input
-          type="number"
-          name={name}
-          min={0}
-          onChange={this.handleFilterChange}
-        />
-      );
-    };
+    const inputField = name => (
+      <input
+        type="number"
+        name={name}
+        min={0}
+        onChange={this.handleFilterChange}
+      />
+    );
 
     return (
       <div style={{ display: "flex" }}>
-        <Select filterChange={this.handleFilterChange} />
+        <AsyncSelect filterChange={this.handleFilterChange} />
         <div>
           beds
           <div style={{ display: "flex" }}>

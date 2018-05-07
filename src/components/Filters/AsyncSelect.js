@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Proptypes from "prop-types";
 import API from "../../API";
 
-export default class Select extends Component {
+export default class AsyncSelect extends Component {
   state = {
     buildingTypes: ["none selected"]
   };
@@ -38,6 +38,6 @@ export default class Select extends Component {
     );
   }
 }
-Select.propTypes = {
+AsyncSelect.propTypes = {
   filterChange: Proptypes.func.isRequired
 };
