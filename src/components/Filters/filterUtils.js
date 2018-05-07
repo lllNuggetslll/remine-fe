@@ -1,5 +1,5 @@
 import isEqual from "lodash/isEqual";
-import { INITIAL_State } from "./FilterContainer";
+import { INITIAL_STATE } from "./FilterContainer";
 import { NONE_SELECTED } from "./AsyncSelect";
 
 /**
@@ -50,7 +50,7 @@ export const buildIndex = properties => {
  * @param {filters} applied filters.
  */
 export const applyFilters = ({ properties, index, filters }) => {
-  if (isEqual(INITIAL_State, filters)) return properties;
+  if (isEqual(INITIAL_STATE, filters)) return properties;
 
   const { indexToFilter, bedBounds, bathBounds } = pepareIndexes({
     filters,

@@ -4,7 +4,7 @@ import AsyncSelect, { NONE_SELECTED } from "./AsyncSelect";
 import InputField from "./InputField";
 import isEqual from "lodash/isEqual";
 
-export const INITIAL_State = {
+export const INITIAL_STATE = {
   buildingType: NONE_SELECTED,
   minBeds: null,
   maxBeds: null,
@@ -13,7 +13,11 @@ export const INITIAL_State = {
 };
 
 export default class FilterContainer extends Component {
-  state = INITIAL_State;
+  state = {};
+
+  componentWillMount() {
+    this.handleResetFilters();
+  }
 
   componentDidUpdate() {
     const { getFilters } = this.props;
@@ -32,7 +36,9 @@ export default class FilterContainer extends Component {
   };
 
   handleResetFilters = () => {
-    this.setState(INITIAL_State);
+    const { initialState } = this.props;
+
+    this.setState(initialState);
   };
 
   render() {
@@ -97,4 +103,7 @@ export default class FilterContainer extends Component {
 }
 FilterContainer.propTypes = {
   getFilters: Proptypes.func.isRequired
+};
+FilterContainer.defaultProps = {
+  initialState: INITIAL_STATE
 };
