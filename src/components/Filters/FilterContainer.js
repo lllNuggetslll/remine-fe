@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Proptypes from "prop-types";
-import AsyncSelect from "./AsyncSelect";
+import AsyncSelect, { NONE_SELECTED } from "./AsyncSelect";
 import InputField from "./InputField";
 import isEqual from "lodash/isEqual";
-import { NONE_SELECTED } from "./AsyncSelect";
 
 export const INITIAL_State = {
   buildingType: NONE_SELECTED,
