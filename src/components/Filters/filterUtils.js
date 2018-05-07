@@ -54,13 +54,12 @@ const objectReducer = arrObj => {
 };
 
 const determineMax = max =>
-  !max ? parseInt(max, 10) + 1 : Number.POSITIVE_INFINITY;
+  max !== null ? parseInt(max, 10) + 1 : Number.POSITIVE_INFINITY;
 
 const pepareIndexes = ({ filters, index }) => {
   const { buildingType, minBeds, maxBeds, minBaths, maxBaths } = filters;
   const { buildingIndex, bedsIndex, bathsIndex } = index;
   const determinedIndexes = {};
-  const processFilters = () => {};
 
   if (buildingType !== "none selected") {
     determinedIndexes.indexToFilter = Object.keys(buildingIndex[buildingType]);
