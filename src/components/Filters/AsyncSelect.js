@@ -4,18 +4,16 @@ import API from "../../API";
 
 export default class AsyncSelect extends Component {
   state = {
-    buildingTypes: ["none selected"]
+    buildingTypes: []
   };
 
   componentDidMount() {
-    const { buildingTypes } = this.state;
-
     API.getBuildingTypes().then(data => {
-      const newBuildingTypes = data.data.map(type => {
+      const buildingTypes = data.data.map(type => {
         return type.name;
       });
 
-      this.setState({ buildingTypes: [...buildingTypes, ...newBuildingTypes] });
+      this.setState({ buildingTypes: ["none selected", ...buildingTypes] });
     });
   }
 

@@ -4,7 +4,7 @@ export const buildIndex = properties => {
     bedsIndex: [],
     bathsIndex: []
   };
-  const ifNull = item => (item === null ? 0 : parseInt(item));
+  const ifNull = item => (item === null ? 0 : item);
 
   properties.forEach((property, id) => {
     const { beds, baths, buildingType: { name } } = property;
@@ -13,10 +13,10 @@ export const buildIndex = properties => {
     if (!index.bedsIndex[ifNull(beds)]) index.bedsIndex[beds] = {};
     if (!index.bathsIndex[ifNull(baths)]) index.bathsIndex[baths] = {};
 
-    index.buildingIndex[name][id] = id;
+    index.buildingIndex[name][id] = true;
     // Each array index indicates the number of beds/baths
-    index.bedsIndex[ifNull(beds)][id] = id;
-    index.bathsIndex[ifNull(baths)][id] = id;
+    index.bedsIndex[ifNull(beds)][id] = true;
+    index.bathsIndex[ifNull(baths)][id] = true;
   });
 
   return index;
