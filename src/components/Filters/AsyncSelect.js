@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Proptypes from "prop-types";
 import API from "../../API";
 
-export const NONE_SELECTED = "None Selected";
+export const NONE_SELECTED = "noneSelected";
 const OPTION_MAP = {
-  "None Selected": "None Selected",
+  noneSelected: "None Selected",
   multiFamily: "Multi Family",
   condo: "Condo",
   business: "Business",
