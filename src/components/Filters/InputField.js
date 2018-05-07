@@ -3,8 +3,8 @@ import Proptypes from "prop-types";
 
 const InputField = ({ name, filterChange, value, min, max }) => {
   let msg = "Enter number";
-  if (min) msg = `Must ${min} or more`;
-  if (max) msg = `Must ${max} or less`;
+  if (min) msg = `Must be ${min} or more`;
+  if (max) msg = `Must be ${max} or less`;
 
   return (
     <input
