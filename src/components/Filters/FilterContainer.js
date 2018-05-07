@@ -3,9 +3,10 @@ import Proptypes from "prop-types";
 import AsyncSelect from "./AsyncSelect";
 import InputField from "./InputField";
 import isEqual from "lodash/isEqual";
+import { NONE_SELECTED } from "./AsyncSelect";
 
-const INITIAL_State = {
-  buildingType: "none selected",
+export const INITIAL_State = {
+  buildingType: NONE_SELECTED,
   minBeds: null,
   maxBeds: null,
   minBaths: null,

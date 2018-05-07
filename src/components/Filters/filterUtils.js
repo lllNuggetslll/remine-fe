@@ -1,9 +1,14 @@
+import isEqual from "lodash/isEqual";
+import { INITIAL_State } from "./FilterContainer";
+import { NONE_SELECTED } from "./AsyncSelect";
+
 export const buildIndex = properties => {
   const index = {
     buildingIndex: {},
     bedsIndex: [],
     bathsIndex: []
   };
+  // sneaky sneaky...
   const ifNull = item => (item === null ? 0 : item);
 
   properties.forEach((property, id) => {
@@ -60,7 +65,7 @@ const pepareIndexes = ({ filters, index }) => {
   const { buildingIndex, bedsIndex, bathsIndex } = index;
   const determinedIndexes = {};
 
-  if (buildingType !== "none selected") {
+  if (buildingType !== NONE_SELECTED) {
     determinedIndexes.indexToFilter = Object.keys(buildingIndex[buildingType]);
   }
 
@@ -90,14 +95,5 @@ const pepareIndexes = ({ filters, index }) => {
 };
 
 const hasFilter = filters => {
-  const { buildingType, minBeds, maxBeds, minBaths, maxBaths } = filters;
-  let hasFilter = false;
-
-  if (buildingType !== "none selected") return true;
-
-  [minBeds, maxBeds, minBaths, maxBaths].forEach(item => {
-    if (item !== null) hasFilter = true;
-  });
-
-  return hasFilter;
+  return !isEqual(INITIAL_State, filters);
 };

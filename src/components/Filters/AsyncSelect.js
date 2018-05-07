@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Proptypes from "prop-types";
 import API from "../../API";
 
+export const NONE_SELECTED = "none selected";
+
 export default class AsyncSelect extends Component {
   state = {
     buildingTypes: []
@@ -13,7 +15,7 @@ export default class AsyncSelect extends Component {
         return type.name;
       });
 
-      this.setState({ buildingTypes: ["none selected", ...buildingTypes] });
+      this.setState({ buildingTypes: [NONE_SELECTED, ...buildingTypes] });
     });
   }
 
