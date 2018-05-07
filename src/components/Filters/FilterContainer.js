@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Proptypes from "prop-types";
 import AsyncSelect from "./AsyncSelect";
+import InputField from "./InputField";
 import isEqual from "lodash/isEqual";
 const INITIAL_State = {
   buildingType: "none selected",
@@ -34,15 +35,6 @@ export default class FilterContainer extends Component {
   };
 
   render() {
-    const inputField = name => (
-      <input
-        type="number"
-        name={name}
-        min={0}
-        onChange={this.handleFilterChange}
-      />
-    );
-
     return (
       <div style={{ display: "flex" }}>
         <AsyncSelect filterChange={this.handleFilterChange} />
@@ -51,11 +43,17 @@ export default class FilterContainer extends Component {
           <div style={{ display: "flex" }}>
             <div>
               <div>min</div>
-              {inputField("minBeds")}
+              <InputField
+                name={"minBeds"}
+                filterChange={this.handleFilterChange}
+              />
             </div>
             <div>
               <div>max</div>
-              {inputField("maxBeds")}
+              <InputField
+                name={"maxBeds"}
+                filterChange={this.handleFilterChange}
+              />
             </div>
           </div>
         </div>
@@ -64,12 +62,17 @@ export default class FilterContainer extends Component {
           <div style={{ display: "flex" }}>
             <div>
               <div>min</div>
-              {inputField("minBaths")}
+              <InputField
+                name={"minBaths"}
+                filterChange={this.handleFilterChange}
+              />
             </div>
             <div>
-              <div />
               <div>max</div>
-              {inputField("maxBaths")}
+              <InputField
+                name={"maxBaths"}
+                filterChange={this.handleFilterChange}
+              />
             </div>
           </div>
         </div>
