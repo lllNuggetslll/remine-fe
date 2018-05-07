@@ -4,7 +4,7 @@ export const buildIndex = properties => {
     bedsIndex: [],
     bathsIndex: []
   };
-  const ifNull = item => (item === null ? 0 : item);
+  const ifNull = item => (item === null ? 0 : parseInt(item));
 
   properties.forEach((property, id) => {
     const { beds, baths, buildingType: { name } } = property;

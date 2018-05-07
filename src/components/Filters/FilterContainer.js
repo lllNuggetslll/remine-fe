@@ -31,6 +31,8 @@ export default class FilterContainer extends Component {
   };
 
   render() {
+    const { minBeds, maxBeds, minBaths, maxBaths } = this.state;
+
     return (
       <div style={{ display: "flex" }}>
         <AsyncSelect filterChange={this.handleFilterChange} />
@@ -41,6 +43,7 @@ export default class FilterContainer extends Component {
               <div>min</div>
               <InputField
                 name={"minBeds"}
+                max={maxBeds}
                 filterChange={this.handleFilterChange}
               />
             </div>
@@ -48,6 +51,7 @@ export default class FilterContainer extends Component {
               <div>max</div>
               <InputField
                 name={"maxBeds"}
+                min={minBeds}
                 filterChange={this.handleFilterChange}
               />
             </div>
@@ -60,6 +64,7 @@ export default class FilterContainer extends Component {
               <div>min</div>
               <InputField
                 name={"minBaths"}
+                max={maxBaths}
                 filterChange={this.handleFilterChange}
               />
             </div>
@@ -67,6 +72,7 @@ export default class FilterContainer extends Component {
               <div>max</div>
               <InputField
                 name={"maxBaths"}
+                min={minBaths}
                 filterChange={this.handleFilterChange}
               />
             </div>
