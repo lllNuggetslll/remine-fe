@@ -2,7 +2,15 @@ import React, { Component } from "react";
 import Proptypes from "prop-types";
 import API from "../../API";
 
-export const NONE_SELECTED = "none selected";
+export const NONE_SELECTED = "None Selected";
+const OPTION_MAP = {
+  "None Selected": "None Selected",
+  multiFamily: "Multi Family",
+  condo: "Condo",
+  business: "Business",
+  office: "Office",
+  singleFamily: "Single Family"
+};
 
 export default class AsyncSelect extends Component {
   state = {
@@ -23,7 +31,7 @@ export default class AsyncSelect extends Component {
 
   render() {
     const { buildingTypes } = this.state;
-    const { filterChange, value } = this.props;
+    const { optionMap, filterChange, value } = this.props;
 
     return (
       <select
@@ -34,7 +42,7 @@ export default class AsyncSelect extends Component {
       >
         {buildingTypes.map(type => (
           <option key={type} value={type}>
-            {type}
+            {OPTION_MAP[type]}
           </option>
         ))}
       </select>
@@ -42,6 +50,10 @@ export default class AsyncSelect extends Component {
   }
 }
 AsyncSelect.propTypes = {
+  optionMap: Proptypes.object.isRequired,
   filterChange: Proptypes.func.isRequired,
   value: Proptypes.string
+};
+AsyncSelect.defaultProps = {
+  optionMap: OPTION_MAP
 };
