@@ -2,6 +2,13 @@ import isEqual from "lodash/isEqual";
 import { INITIAL_State } from "./FilterContainer";
 import { NONE_SELECTED } from "./AsyncSelect";
 
+/**
+ * Builds an index of the property indexes and stores them according
+ * to how they might be filtered.  Leveraging constant time look up
+ * of objects and arrays. Array indexes used to easily slice() out bed/bath bounds.
+ * i.e. bedsIndex = [{...properties with 0 bedrooms}, {...properties with 1 bedroom}, ...]
+ * @param {properties} original array of properties.
+ */
 export const buildIndex = properties => {
   const index = {
     buildingIndex: {},
@@ -27,6 +34,15 @@ export const buildIndex = properties => {
   return index;
 };
 
+/**
+ * Executed everytime a new filter is applied.  If no filters, the
+ * original property list will be returned.  The property list is
+ * never iterated over, only preparedIndex, a sub section of pertinent
+ * data.
+ * @param {properties} original array of properties.
+ * @param {index} property index.
+ * @param {filters} applied filters.
+ */
 export const applyFilters = ({ properties, index, filters }) => {
   if (isEqual(INITIAL_State, filters)) return properties;
 
@@ -35,9 +51,14 @@ export const applyFilters = ({ properties, index, filters }) => {
     index
   });
 
+  // Correlates the different indexes and only filters out common indexes
+  // i.e. singleFamily && 2+ bedrooms && 2 - 4 bathrooms
   if (!bedBounds && !bathBounds) {
     return indexToFilter.map(index => properties[index]);
   } else {
+    // There is at least 1 bed/bath filter or both,
+    // this takes care of both situations and still
+    // leverages constant time look up of both objects
     const left = bedBounds || bathBounds;
     const right = bathBounds || bedBounds;
     const filteredList = [];
@@ -50,16 +71,29 @@ export const applyFilters = ({ properties, index, filters }) => {
   }
 };
 
-const objectReducer = arrObj => {
-  return arrObj.reduce((acc, x) => {
-    for (var key in x) acc[key] = x[key];
-    return acc;
+/**
+ * Takes an array of objs and combines them into 1 obj
+ * to be searched.
+ * @param {arrObj} array of objs.
+ */
+const objectReducer = arrObj =>
+  arrObj.reduce((acc, x) => {
+    return { ...acc, ...x };
   }, {});
-};
 
+/**
+ * Accounts for any unknown max bounds for slicing operations
+ * @param {max} a max bound.
+ */
 const determineMax = max =>
   max !== null ? parseInt(max, 10) + 1 : Number.POSITIVE_INFINITY;
 
+/**
+ * Builds the index to be filtered according to the filters.
+ * We only want to filter over pertinent data.
+ * @param {index} property index.
+ * @param {filters} applied filters.
+ */
 const pepareIndexes = ({ filters, index }) => {
   const { buildingType, minBeds, maxBeds, minBaths, maxBaths } = filters;
   const { buildingIndex, bedsIndex, bathsIndex } = index;
