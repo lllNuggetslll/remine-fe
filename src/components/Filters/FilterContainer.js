@@ -30,10 +30,6 @@ export default class FilterContainer extends Component {
     this.setState({ [name]: value === "" ? null : value });
   };
 
-  handleResetFilters = () => {
-    this.setState(INITIAL_State);
-  };
-
   render() {
     return (
       <div style={{ display: "flex" }}>
@@ -76,7 +72,6 @@ export default class FilterContainer extends Component {
             </div>
           </div>
         </div>
-        <button onClick={this.handleResetFilters}>reset</button>
       </div>
     );
   }
