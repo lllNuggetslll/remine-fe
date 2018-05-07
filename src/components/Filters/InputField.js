@@ -1,4 +1,5 @@
 import React from "react";
+import Proptypes from "prop-types";
 
 const InputField = ({ name, filterChange, min, max }) => {
   let msg = "Enter number";
@@ -14,6 +15,12 @@ const InputField = ({ name, filterChange, min, max }) => {
       onChange={filterChange}
     />
   );
+};
+InputField.propTypes = {
+  name: Proptypes.string.isRequired,
+  filterChange: Proptypes.func.isRequired,
+  min: Proptypes.string,
+  max: Proptypes.string
 };
 
 export default InputField;
